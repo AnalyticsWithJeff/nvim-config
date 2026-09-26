@@ -169,6 +169,15 @@ require("lazy").setup({
   {
     "lewis6991/gitsigns.nvim",
     event = { "BufReadPost", "BufNewFile" },
+    keys = {
+      { "<leader>gp", "<cmd>Gitsigns preview_hunk<CR>", desc = "Preview git hunk" },
+      { "<leader>gb", "<cmd>Gitsigns blame_line<CR>", desc = "Git blame line" },
+      { "<leader>gd", "<cmd>Gitsigns diffthis<CR>", desc = "Git diff this" },
+      { "<leader>gS", "<cmd>Gitsigns stage_buffer<CR>", desc = "Stage git buffer" },
+      { "<leader>gR", "<cmd>Gitsigns reset_buffer<CR>", desc = "Reset git buffer" },
+      { "<leader>gs", "<cmd>Gitsigns stage_hunk<CR>", desc = "Stage git hunk", mode = { "n", "v" } },
+      { "<leader>gr", "<cmd>Gitsigns reset_hunk<CR>", desc = "Reset git hunk", mode = { "n", "v" } },
+    },
     opts = {
       signs = {
         add = { text = "▎" },
