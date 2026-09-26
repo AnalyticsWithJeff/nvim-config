@@ -89,8 +89,15 @@ require("lazy").setup({
 
   {
     "nvim-lualine/lualine.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-    opts = { options = { theme = "catppuccin", globalstatus = true } },
+    dependencies = { "nvim-tree/nvim-web-devicons", "catppuccin" },
+    opts = function()
+      return {
+        options = {
+          theme = require("catppuccin.utils.lualine")("mocha"),
+          globalstatus = true,
+        },
+      }
+    end,
   },
 
   {
