@@ -178,6 +178,16 @@ require("lazy").setup({
     event = { "BufReadPost", "BufNewFile" },
     keys = {
       { "<leader>gp", "<cmd>Gitsigns preview_hunk<CR>", desc = "Preview git hunk" },
+      {
+        "<leader>gn",
+        function() require("gitsigns").nav_hunk("next", { preview = true }) end,
+        desc = "Next git hunk with preview",
+      },
+      {
+        "<leader>gN",
+        function() require("gitsigns").nav_hunk("prev", { preview = true }) end,
+        desc = "Previous git hunk with preview",
+      },
       { "<leader>gb", "<cmd>Gitsigns blame_line<CR>", desc = "Git blame line" },
       { "<leader>gd", "<cmd>Gitsigns diffthis<CR>", desc = "Git diff this" },
       { "<leader>gS", "<cmd>Gitsigns stage_buffer<CR>", desc = "Stage git buffer" },
@@ -200,6 +210,8 @@ require("lazy").setup({
         end
         map("n", "]c", function() if vim.wo.diff then return "]c" end vim.schedule(gs.next_hunk) return "<Ignore>" end, "Next git hunk")
         map("n", "[c", function() if vim.wo.diff then return "[c" end vim.schedule(gs.prev_hunk) return "<Ignore>" end, "Previous git hunk")
+        map("n", "<leader>gn", function() gs.nav_hunk("next", { preview = true }) end, "Next hunk with preview")
+        map("n", "<leader>gN", function() gs.nav_hunk("prev", { preview = true }) end, "Previous hunk with preview")
         map("n", "<leader>gs", gs.stage_hunk, "Stage hunk")
         map("n", "<leader>gr", gs.reset_hunk, "Reset hunk")
         map("v", "<leader>gs", function() gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") }) end, "Stage selected hunk")
